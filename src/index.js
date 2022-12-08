@@ -1,7 +1,7 @@
 import React, { useState } from "react"; //Enables JSX
 import ReactDOM from "react-dom/client"; //Allows us to Attach the App
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {Albums, Header, Home, Signup, Login} from "./exports";
+import {Albums, Header, Home, Signup, Login, Shop} from "./exports";
 
 
 //compenet is a function that returns HTML template
@@ -25,6 +25,10 @@ const Main = () => {
       
       <Route exact path="/albums">
       <Albums />
+      </Route>
+
+      <Route exact path='/shop'>
+        <Shop />
       </Route>
     </main>
     </>

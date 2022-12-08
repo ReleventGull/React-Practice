@@ -21,6 +21,33 @@ const createUser = async ({username, password}) => {
     }
 }
 
+const createClothing = async ({name, price, img}) => {
+    try {
+        const {rows: clothes} = await client.query(`
+        INSERT INTO clothing (name, price, img)
+        VALUES($1, $2, $3)
+        RETURNING *;
+        `, [name, price, img])
+        return clothes
+    }catch(error) {
+        console.log("There was an error creating the clothing")
+        throw error
+    }
+}
+
+
+const getAllClothing = async () => {
+    try {
+    const {rows: clothes} = await client.query(`
+    SELECT * FROM clothing;
+    `)
+    console.log('All clothing here', clothes)
+    return clothes
+    }catch(error) {
+        console.log("There was an error getting all the clothing")
+        throw error
+    }
+}
 const getAllUsers = async() => {
     try {
     const {rows: users} = await client.query(`
@@ -53,7 +80,9 @@ module.exports = {
     client,
     createUser,
     getUserByUsername,
-    getAllUsers
+    getAllUsers,
+    createClothing,
+    getAllClothing
 }
 
 

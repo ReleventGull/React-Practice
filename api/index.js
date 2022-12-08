@@ -42,12 +42,10 @@ apiRouter.post('/users/login', async(req, res, next) => {
     console.log("A request is being made to login")
     try {
         const allUsers = await getAllUsers()
-        const foundUser = allUsers.filter(user => user.username == username)
-        
+        const [foundUser] = allUsers.filter(user => user.username == username)
         if(foundUser.length < 1) {
             res.send({error:"Wrong Credentials", message:"No user with that username was found"})
         }
-       
         if(password == foundUser.password) {
             const token = jwt.sign({username: foundUser.username}, JWT_SECRET)
             console.log(token)
@@ -55,12 +53,10 @@ apiRouter.post('/users/login', async(req, res, next) => {
         }else {
             res.send({error:"Incorrect Credentials", message:"Your password or username is incorrect."})
         } 
-
     }catch(error) {
         console.log("There was an error logging in") 
         throw error
     }
-    
 })
 
 
