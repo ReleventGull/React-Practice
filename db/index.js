@@ -75,7 +75,6 @@ const getUserByUsername = async(username) => {
 }
 
 
-
 module.exports = {
     client,
     createUser,
