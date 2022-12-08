@@ -32,13 +32,14 @@
 body {
     background-color: pink;
 }
+
+
 main {
     display: flex;
     flex-direction: column;
 }
 
 header {
-    animation: transitionIn2 2.5s;
     height: 10vh;
     font-size: 10px;
     display: flex;
@@ -48,27 +49,173 @@ header {
     border-bottom: 1px solid;
     box-shadow: -10px 5px 10px;
     padding: .5px;
-    background-color: white;
+    background-color: #f4f4ec;
 }
 nav a {
-  
     text-decoration: none;
     background-color: black;
     color: white;
     padding: 7px;
-    width: 70px;
-    margin: 2px;
-    font-size: 1.5em;
+    margin: 4px;
+    font-size: 2.5em;
     background-color: black;
     color: white;
     
   }
-  a:hover {
-    animation: enlarger 0.3s;
-    background-color: white;
-    color: black;
-  }
+
+.chonSelfTitledLogo {
+  height: 100%;
+  margin: 0;
+}
+
 .chonLogo {
     height: 6vh;
-   
+}
+/*****************************HOME PAGE**********************************/
+.homeContainer {
+  margin-top: 3em;
+  display:flex;
+  flex-direction: row;
+  background-color: #f4f4ec;
+  justify-content: space-between;
+}
+
+.chonHomeTextContainer {
+margin-top: 1em;
+ width: 40%
+}
+
+.pictureContainer {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  
+}
+
+.chonCrew {
+ width: 100%;
+ margin-bottom: 1em;
+}
+.marioAndEric {
+  width: 100%
+}
+
+
+
+
+
+/****************************CARDS****************************/
+.card {
+  transition: .3s;
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 2px 5px;
+  padding: 10px;
+  margin: 40px;
+  width: 550px;
+  background-color: white;
+}
+
+.card:hover {
+  transition: .3s;
+  transform:  translateY(-15px);
+  
+}
+.card h2 {
+  font-size: 2rem;
+  align-self: center;
+  
+}
+.card p {
+  font-size: 2rem;
+  flex-wrap: wrap;
+  
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+  margin: 35px 0;
+}
+
+/*******************************SIGNUP**************************/
+.signupPage {
+  width: 75%;
+  background-color: tan;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin-top: 35px;
+  
+}
+.signupContainer {
+  font-size: 2em;
+  margin-top: 40px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+
+.submitForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup {
+  transition: .5s;
+  font-size: .5em;
+  margin: 10px;
+  border:none;
+  width: 300px;
+  height: 50px;
+  background-color: transparent;
+  border-bottom: 1px solid black;;
+}
+
+.signup:hover {
+  transition: .5s;
+  transform: scale(1.1); 
+}
+.signup:focus {
+ 
+  outline:none;
+}
+
+
+.signupImage {
+  width: 50%;
+}
+.notAffiliated {
+  width: 70%;
+}
+
+
+
+
+
+@media screen and (max-width: 1400px) {
+  nav {
+    display: none;
+  }
+  .container {
+    flex-direction: column;
+    
+    
+  }
+  .card {
+    
+    align-self: center;
+  }
+  .card h2 {
+    font-size: 3em;
+  }
 }
