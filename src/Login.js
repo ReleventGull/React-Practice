@@ -7,8 +7,13 @@ const Login = () => {
     const [password, setPassword] = useState('')
     
     const handleSubmit = async(event) => {
-        event.preventDefault()
-        await signIn(userName, password)
+        try {
+            event.preventDefault()
+            const result = await signIn(userName, password)
+            console.log('Reponse', result)
+        }catch(error){
+            throw error
+        }
     }
     return (
         <div className='signupPage'>
@@ -20,9 +25,8 @@ const Login = () => {
         </p>
         <p className='notAffiliated'>This website is in no way affiliated with Chon or their affiliates. This is only a fan website.</p>
         <form className='submitForm' onSubmit={handleSubmit}>
-        <input className='signup username' onChange={(event) => setUsername(event.target.value)}value={userName} type='username'placeholder='Username'/>
-        <input className='signup password' onChange={(event) => setPassword(event.target.value)} value={password} type='password'placeholder='Password'/>
-
+        <input className='signup username'  onChange={(event) => setUsername(event.target.value)}value={userName} type='username'placeholder='Username'/>
+        <input className='signup password'  onChange={(event) => setPassword(event.target.value)} value={password} type='password'placeholder='Password'/>
         <button className='signup button' type='submit'>Submit!</button>
         </form>
         </div>
