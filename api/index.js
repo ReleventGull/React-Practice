@@ -34,7 +34,9 @@ apiRouter.use(async (req, res, next) => {
 });
 
 const userRouter = require('./users')
+const clothingRouter = require('./clothing')
 apiRouter.use('/users', userRouter)
+apiRouter.use('/clothing', clothingRouter)
 
 
 apiRouter.use((error, req, res, next) => {
