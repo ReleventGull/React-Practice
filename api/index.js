@@ -7,21 +7,26 @@ const JWT_SECRET = "ibanezsecretguitarmodeldoesntmakesense";
 
 
 apiRouter.use(async (req, res, next) => {
+
   const prefix = "Bearer";
   const auth = req.header("Authorization");
   if (!auth) {
-    console.log("There is no token")
+    
     next();
   } 
   else if (auth.startsWith(prefix)) {
     const token = auth.slice(prefix.length);
+    console.log(token)
     try {
-      const { username } = jwt.verify(token, JWT_SECRET);
+      const username = jwt.verify(token, JWT_SECRET);
+      console.log('The username is here', username)
       if (username) {
         req.user = await getUserByUsername(username);
+        
         next();
       }
     } catch (error) {
+      console.log(error)
       next(error);
     }
   } else {

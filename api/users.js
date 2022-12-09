@@ -39,8 +39,7 @@ userRouter.get('/', (req, res, next) => {
         const createdUser = await createUser(req.body);
         const token = jwt.sign({ username: createdUser.username }, JWT_SECRET);
         res.send({
-          message: "User created!",
-          user: createdUser,
+          message: "Success",
           user: createdUser,
           token: token,
         });
@@ -66,7 +65,7 @@ userRouter.get('/', (req, res, next) => {
       if (existingUser.password == password){
         const token = jwt.sign({username: username}, JWT_SECRET)
         res.send({
-          message: "Success!",
+          message: "Success",
           user: existingUser,
           token: token
         })

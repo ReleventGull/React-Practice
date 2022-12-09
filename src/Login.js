@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {signIn} from './apiCall/index'
 
 
-const Login = () => {
+const Login = ({setToken}) => {
     const [userName, setUsername] = useState('')
     const [password, setPassword] = useState('')
     
@@ -10,7 +10,11 @@ const Login = () => {
         try {
             event.preventDefault()
             const result = await signIn(userName, password)
-            console.log('Reponse', result)
+            console.log(result)
+            if(result.message == 'Success') {
+                window.localStorage.setItem('token', result.token)
+                setToken(result.token)
+            }
         }catch(error){
             throw error
         }

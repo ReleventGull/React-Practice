@@ -1,5 +1,21 @@
 const BASE_URL = 'http://localhost:4000'
 
+export const getUserData = async (token) => {
+    
+   try {
+    const response = await fetch(`${BASE_URL}/api/users`, {
+        headers : {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+    const result = await response.json()
+    console.log('The user is here', result)
+    return result
+   }catch(error) {
+    throw error
+   }
+}
 
 export const createUser = async (username, password) => {
 const response = await fetch(`${BASE_URL}/api/users/signup`, {
