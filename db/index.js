@@ -64,7 +64,7 @@ const getAllUsers = async() => {
 const getUserByUsername = async(username) => {
     try {
         const {rows: [user]} = await client.query(`
-        SELECT username FROM users
+        SELECT * FROM users
         WHERE username=$1;
         `, [username])
         return user

@@ -16,7 +16,7 @@ const Shop = () => {
     
     return (
         !shopitem ? <div>Loading</div>:
-        shopitem.forEach(item => <h1>Bruh</h1>)
+        shopitem.forEach(item => <p>awdawd</p>)
         
 )}
 

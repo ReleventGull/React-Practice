@@ -28,8 +28,7 @@ export const signIn = async (username, password) => {
     })
     })
     const result = await response.json()
-    console.log("Result from sign in here:", result)
-    return response
+    return result
 }
 
 export const getClothing = async() => {

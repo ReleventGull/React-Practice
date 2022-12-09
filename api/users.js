@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-const { getAllUsers, createUser} = require("../db");
+const { getAllUsers, createUser, getUserByUsername} = require("../db");
 
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = "ibanezsecretguitarmodeldoesntmakesense";
@@ -51,37 +51,36 @@ userRouter.get('/', (req, res, next) => {
     }
   });
   
-  userRouter.post("/login", async (req, res, next) => {
-    const { username, password } = req.body;
-    console.log("A request is being made to login");
+  userRouter.post('/login', async(req, res, next) => {
+    const {username, password} = req.body
+    const existingUser = await getUserByUsername(username)
+    console.log('Get user by username', existingUser)
     try {
-      const allUsers = await getAllUsers();
-      const [foundUser] = allUsers.filter((user) => user.username == username);
-      if (foundUser.length < 1) {
-        res.send({
-          error: "Wrong Credentials",
-          message: "No user with that username was found",
-        });
-      }
-      if (password == foundUser.password) {
-        const token = jwt.sign({ username: foundUser.username }, JWT_SECRET);
-        console.log(token);
-        res.send({
-          Message: "You're successfully logged in!",
-          User: foundUser,
-          token: token,
-        });
-      } else {
-        res.send({
-          error: "Incorrect Credentials",
-          message: "Your password or username is incorrect.",
-        });
-      }
-    } catch (error) {
-      console.log("There was an error logging in");
-      throw error;
+      if(!existingUser) {
+      res.send({
+        error:"Invalid Credentials",
+        message: "No user by that username exists."
+      })
     }
-  });
+    
+      if (existingUser.password == password){
+        const token = jwt.sign({username: username}, JWT_SECRET)
+        res.send({
+          message: "Success!",
+          user: existingUser,
+          token: token
+        })
+      }else {
+        res.send({
+          error:"Invalid Credentials",
+          message: "Your username or password is incorrect."
+        })
+      }
+    }catch(error) {
+      console.log("There was an error loggin in at api/users/login")
+    }
+  
+  })
 
   module.exports = userRouter
   
