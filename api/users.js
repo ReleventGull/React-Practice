@@ -3,8 +3,6 @@ const userRouter = express.Router();
 const { getAllUsers, createUser, getUserByUsername} = require("../db");
 
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "ibanezsecretguitarmodeldoesntmakesense";
-
 
 
 
@@ -37,10 +35,9 @@ userRouter.get('/', (req, res, next) => {
         });
       } else {
         const createdUser = await createUser(req.body);
-        const token = jwt.sign({ username: createdUser.username }, JWT_SECRET);
+        const token = jwt.sign({ username: createdUser.username }, process.env.JWT_SECRET);
         res.send({
-          message: "User created!",
-          user: createdUser,
+          message: "Success",
           user: createdUser,
           token: token,
         });
@@ -64,9 +61,9 @@ userRouter.get('/', (req, res, next) => {
     }
     
       if (existingUser.password == password){
-        const token = jwt.sign({username: username}, JWT_SECRET)
+        const token = jwt.sign({username: username}, process.env.JWT_SECRET)
         res.send({
-          message: "Success!",
+          message: "Success",
           user: existingUser,
           token: token
         })

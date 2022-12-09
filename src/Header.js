@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import React  from "react"; //Enables JSX
-const Header = () => {
+const Header = ({token}) => {
     return (
       <header>
         <img className='chonSelfTitledLogo' src='https://pbs.twimg.com/profile_images/1186705742339788800/xD0wpGRk_400x400.jpg' />
@@ -12,9 +12,15 @@ const Header = () => {
         <nav className="wholenav">
           <Link to="/">Home</Link>
           <Link to="/Albums">Ablums</Link>
+          <Link to='/Shop'>Shop</Link>
+          
+          {token ? <Link to='/Profile'>Profile</Link> :
+          <>
           <Link to="/Login">Login</Link>
           <Link to="/Signup">Sign Up</Link>
-          <Link to='/Shop'>Shop</Link>
+          </>
+          }
+          
           
         </nav>
       </header>
